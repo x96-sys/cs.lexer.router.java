@@ -8,7 +8,7 @@ import org.x96.sys.foundation.buzz.cs.lexer.router.architecture.BuzzAnalyzerEmpt
 import org.x96.sys.foundation.cs.lexer.router.Router;
 import org.x96.sys.foundation.cs.lexer.token.Token;
 import org.x96.sys.foundation.cs.lexer.tokenizer.Tokenizer;
-import org.x96.sys.foundation.cs.lexer.visitor.entry.Terminal;
+import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.Terminal;
 import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c0.Stx;
 
 class AnalyzerTest {
