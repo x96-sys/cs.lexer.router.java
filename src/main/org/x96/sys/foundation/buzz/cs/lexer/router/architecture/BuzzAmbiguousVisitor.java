@@ -21,7 +21,7 @@ public class BuzzAmbiguousVisitor extends Buzz {
                 "["
                         + cls.getSimpleName()
                         + "] tenta registrar ["
-                        + hex(i)
+                        + String.format("0x%X", i)
                         + "] ["
                         + (char) i
                         + "] que já é respondido por ["
@@ -75,11 +75,13 @@ public class BuzzAmbiguousVisitor extends Buzz {
     }
 
     private static void appendRange(StringBuilder sb, int inicio, int fim) {
-        if (sb.length() > 0) sb.append(", ");
+        if (sb.length() > 0)
+            sb.append(", ");
         if (inicio == fim) {
-            sb.append("[").append(hex(inicio)).append("]");
+            sb.append("[").append(String.format("0x%X", inicio)).append("]");
         } else {
-            sb.append("[").append(hex(inicio)).append("–").append(hex(fim)).append("]");
+            sb.append("[").append(String.format("0x%X", inicio)).append("–").append(String.format("0x%X", fim))
+                    .append("]");
         }
     }
 }

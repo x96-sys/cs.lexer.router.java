@@ -1,7 +1,8 @@
+out
 build
 build.xml
-lib
 nbproject
-manifest.mf
+lib
 *.jar
 src/main/org/x96/sys/foundation/BuildInfo.java
+manifest.mf

@@ -22,7 +22,7 @@ public class Serial extends Router {
 
     @Override
     public Class<? extends Visitor> visitorTo(int hex) {
-        throw new Buzz("serial n implementa visitorTo");
+        throw new Buzz(0x0, "?", "serial n implementa visitorTo");
     }
 
     public Serial() {
@@ -107,8 +107,7 @@ public class Serial extends Router {
             }
             if (hasNext()
                     && (visitorInLine().quantifier == Quantifier.ZERO_OR_MORE
-                            || visitorInLine().quantifier
-                                    == Quantifier.ZERO_OR_ONE)) { // ultimo visitante podia ser
+                            || visitorInLine().quantifier == Quantifier.ZERO_OR_ONE)) { // ultimo visitante podia ser
                 // zero
                 dequeue();
                 afterStream(t);
