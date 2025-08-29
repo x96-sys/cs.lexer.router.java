@@ -4,7 +4,7 @@ build.xml
 nbproject
 lib
 *.jar
-src/main/org/x96/sys/foundation/BuildInfo.java
+src/main/org/x96/sys/BuildInfo.java
 manifest.mf
 .idea
 .zig-cache

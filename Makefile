@@ -76,12 +76,12 @@ JACOCO_AGENT_SHA256  = 47e700ccb0fdb9e27c5241353f8161938f4e53c3561dd35e063c5fe88
 JAVA_SOURCES     = $(shell find $(SRC_MAIN) -name "*.java")
 JAVA_TEST_SOURCE = $(shell find $(SRC_TEST) -name "*.java")
 
-DISTRO_JAR = org.x96.sys.foundation.cs.lexer.router.jar
+DISTRO_JAR = org.x96.sys.lexer.router.jar
 
 CP  = $(BUZZ_JAR):$(IO_JAR):$(KIND_JAR):$(TOKENIZER_JAR):$(TOKEN_JAR):$(LEXER_JAR):$(CS_VISITOR_JAR)
 CPT = $(JUNIT_JAR):$(ENTRY_JAR):$(CP)
 
-build: libs generate-build-info
+build: libs
 	@javac -d $(MAIN_BUILD) -cp $(CP) $(JAVA_SOURCES)
 	@echo "[🦾] [compiled] [$(MAIN_BUILD)]"
 
@@ -125,7 +125,6 @@ test-class: build-test ## Executa classe de teste (CLASS="nome.da.Classe")
 format: tools/gjf ## Formata todo o código fonte Java com google-java-format
 	find src -name "*.java" -print0 | xargs -0 java -jar $(GJF_JAR) --aosp --replace
 
-build-info: generate-build-info ## Força a regeneração do BuildInfo
 
 define deps
 $1/$2: $1
@@ -186,39 +185,6 @@ kit: \
 	$(TOOLS_DIR)/junit \
 	$(TOOLS_DIR)/jacoco_cli \
 	$(TOOLS_DIR)/jacoco_agent
-
-generate-build-info:
-	@echo "[🔧] [BuildInfo]"
-	@mkdir -p $(SRC_MAIN)/org/x96/sys/foundation
-	@printf 'package org.x96.sys.foundation;\n\n' > $(SRC_MAIN)/org/x96/sys/foundation/BuildInfo.java
-	@printf '/**\n * Informações de build geradas automaticamente pelo Makefile\n * Não edite este arquivo manualmente!\n */\n' >> $(SRC_MAIN)/org/x96/sys/foundation/BuildInfo.java
-	@printf 'public final class BuildInfo {\n' >> $(SRC_MAIN)/org/x96/sys/foundation/BuildInfo.java
-	@if command -v git >/dev/null 2>&1 && git rev-parse --git-dir >/dev/null 2>&1; then \
-    	VERSION=$$(git describe --tags --always --dirty 2>/dev/null || echo "v0.1.0-unknown"); \
-    	if echo "$$VERSION" | grep -q "^v[0-9]"; then \
-      		MAJOR=$$(echo "$$VERSION" | sed 's/^v\([0-9]*\)\..*/\1/'); \
-      		MINOR=$$(echo "$$VERSION" | sed 's/^v[0-9]*\.\([0-9]*\)\..*/\1/'); \
-      		PATCH=$$(echo "$$VERSION" | sed 's/^v[0-9]*\.[0-9]*\.\([0-9]*\).*/\1/'); \
-    	else \
-      		MAJOR="0"; MINOR="1"; PATCH="0"; \
-    	fi; \
-  	else \
-    	VERSION="v0.1.0-no-git"; \
-    	MAJOR="0"; MINOR="1"; PATCH="0"; \
-  	fi; \
-    BUILD_DATE=$$(date '+%Y-%m-%d %H:%M:%S'); \
-    BUILD_USER=$$(whoami); \
-    printf '    public static final String VERSION = "%s";\n' "$$VERSION" >> $(SRC_MAIN)/org/x96/sys/foundation/BuildInfo.java; \
-    printf '    public static final String BUILD_DATE = "%s";\n' "$$BUILD_DATE" >> $(SRC_MAIN)/org/x96/sys/foundation/BuildInfo.java; \
-    printf '    public static final String BUILD_USER = "%s";\n' "$$BUILD_USER" >> $(SRC_MAIN)/org/x96/sys/foundation/BuildInfo.java; \
-    printf '    public static final String VERSION_MAJOR = "%s";\n' "$$MAJOR" >> $(SRC_MAIN)/org/x96/sys/foundation/BuildInfo.java; \
-    printf '    public static final String VERSION_MINOR = "%s";\n' "$$MINOR" >> $(SRC_MAIN)/org/x96/sys/foundation/BuildInfo.java; \
-    printf '    public static final String VERSION_PATCH = "%s";\n' "$$PATCH" >> $(SRC_MAIN)/org/x96/sys/foundation/BuildInfo.java
-	@printf '\n    private BuildInfo() {\n        // Classe utilitária - não deve ser instanciada\n    }\n\n' >> $(SRC_MAIN)/org/x96/sys/foundation/BuildInfo.java
-	@printf '    public static String getFullVersion() {\n' >> $(SRC_MAIN)/org/x96/sys/foundation/BuildInfo.java
-	@printf '        return VERSION + " (built on " + BUILD_DATE + " by " + BUILD_USER + ")";\n' >> $(SRC_MAIN)/org/x96/sys/foundation/BuildInfo.java
-	@printf '    }\n}\n' >> $(SRC_MAIN)/org/x96/sys/foundation/BuildInfo.java
-	@echo "[✅] [BuildInfo] gerado com sucesso!"
 
 distro: libs
 	@jar cf $(DISTRO_JAR) -C $(MAIN_BUILD) .
