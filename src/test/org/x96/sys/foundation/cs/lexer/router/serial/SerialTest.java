@@ -18,6 +18,10 @@ import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c3.DigitZero;
 import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c6.LatinSmallLetterA;
 import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c6.LatinSmallLetterC;
 import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c7.LatinSmallLetterS;
+import org.x96.sys.io.ByteStream;
+import org.x96.sys.lexer.token.Kind;
+import org.x96.sys.lexer.token.Token;
+import org.x96.sys.lexer.tokenizer.Tokenizer;
 
 class SerialTest {
     @Test
