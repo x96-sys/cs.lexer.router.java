@@ -1,6 +1,6 @@
 package org.x96.sys.foundation.buzz.cs.lexer.router.switcher;
 
-import org.x96.sys.foundation.buzz.Buzz;
+import org.x96.sys.buzz.Buzz;
 
 public class BuzzSwitcherEmpty extends Buzz {
     public static final int CODE = 0x76;

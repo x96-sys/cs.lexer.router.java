@@ -1,15 +1,15 @@
 package org.x96.sys.foundation.cs.lexer.router.serial;
 
-import org.x96.sys.foundation.buzz.Buzz;
+import org.x96.sys.buzz.Buzz;
 import org.x96.sys.foundation.buzz.cs.lexer.router.serial.BuzzCantSerialize;
 import org.x96.sys.foundation.buzz.cs.lexer.router.serial.BuzzUnexpectedTokenForVisitor;
 import org.x96.sys.foundation.cs.lexer.router.Router;
 import org.x96.sys.foundation.cs.lexer.router.serial.architecture.Quantifier;
 import org.x96.sys.foundation.cs.lexer.router.serial.architecture.Step;
-import org.x96.sys.foundation.cs.lexer.token.Token;
-import org.x96.sys.foundation.cs.lexer.tokenizer.Tokenizer;
-import org.x96.sys.foundation.cs.lexer.visitor.Visitor;
-import org.x96.sys.foundation.cs.lexer.visitor.factory.ReflectiveVisitorFactory;
+import org.x96.sys.lexer.token.Token;
+import org.x96.sys.lexer.tokenizer.Tokenizer;
+import org.x96.sys.lexer.visitor.Visitor;
+import org.x96.sys.lexer.visitor.factory.ReflectiveVisitorFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;

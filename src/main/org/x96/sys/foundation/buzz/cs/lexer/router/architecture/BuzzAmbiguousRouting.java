@@ -1,6 +1,6 @@
 package org.x96.sys.foundation.buzz.cs.lexer.router.architecture;
 
-import org.x96.sys.foundation.buzz.Buzz;
+import org.x96.sys.buzz.Buzz;
 
 public class BuzzAmbiguousRouting extends Buzz {
     private static final int CODE = 0xE1;

@@ -1,11 +1,11 @@
 package org.x96.sys.foundation.buzz.cs.lexer.router.serial;
 
-import org.x96.sys.foundation.buzz.Buzz;
+import org.x96.sys.buzz.Buzz;
 import org.x96.sys.foundation.cs.lexer.router.serial.architecture.Step;
-import org.x96.sys.foundation.cs.lexer.tokenizer.Tokenizer;
-import org.x96.sys.foundation.cs.lexer.visitor.Visitor;
-import org.x96.sys.foundation.cs.lexer.visitor.factory.ReflectiveVisitorFactory;
-import org.x96.sys.foundation.io.ByteStream;
+import org.x96.sys.lexer.tokenizer.Tokenizer;
+import org.x96.sys.lexer.visitor.Visitor;
+import org.x96.sys.lexer.visitor.factory.ReflectiveVisitorFactory;
+import org.x96.sys.io.ByteStream;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +29,9 @@ public class BuzzCantSerialize extends Buzz {
 
         return String.format(
                 """
-                Atual visitante [%s] encontrou token [%s0x%X%s] inesperado;
-                  > Tokens esperados são [%s]
-                """,
+                        Atual visitante [%s] encontrou token [%s0x%X%s] inesperado;
+                          > Tokens esperados são [%s]
+                        """,
                 step.visitor.getSimpleName(),
                 RED,
                 tokenizer.look(),
@@ -44,7 +44,7 @@ public class BuzzCantSerialize extends Buzz {
     private static List<Integer> discovery(Class<? extends Visitor> v) {
         List<Integer> r = new ArrayList<>();
         for (int i = 0; i < 0xFF; i++) {
-            Tokenizer t = new Tokenizer(ByteStream.raw(new byte[] {(byte) i}));
+            Tokenizer t = new Tokenizer(ByteStream.raw(new byte[] { (byte) i }));
             if (ReflectiveVisitorFactory.happens(v, t).allowed()) {
                 r.add(i);
             }

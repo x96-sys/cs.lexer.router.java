@@ -1,8 +1,8 @@
 package org.x96.sys.foundation.cs.lexer.router;
 
-import org.x96.sys.foundation.cs.lexer.token.Token;
-import org.x96.sys.foundation.cs.lexer.tokenizer.Tokenizer;
-import org.x96.sys.foundation.cs.lexer.visitor.Visiting;
+import org.x96.sys.lexer.token.Token;
+import org.x96.sys.lexer.tokenizer.Tokenizer;
+import org.x96.sys.lexer.visitor.Visiting;
 
 public interface Routing {
 

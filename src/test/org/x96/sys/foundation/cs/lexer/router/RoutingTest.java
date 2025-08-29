@@ -3,8 +3,8 @@ package org.x96.sys.foundation.cs.lexer.router;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-import org.x96.sys.foundation.cs.lexer.token.Token;
-import org.x96.sys.foundation.cs.lexer.tokenizer.Tokenizer;
+import org.x96.sys.lexer.token.Token;
+import org.x96.sys.lexer.tokenizer.Tokenizer;
 
 import java.lang.reflect.Method;
 
@@ -29,13 +29,12 @@ class RoutingTest {
 
     @Test
     void testRoutingClassMethods() throws NoSuchFieldException, IllegalAccessException {
-        Router r =
-                new Router() {
-                    @Override
-                    public Token[] stream(Tokenizer tokenizer) {
-                        return new Token[0];
-                    }
-                };
+        Router r = new Router() {
+            @Override
+            public Token[] stream(Tokenizer tokenizer) {
+                return new Token[0];
+            }
+        };
         assertNull(r.dispatcher);
         assertFalse(r.analyzed);
         var e = assertThrows(RuntimeException.class, () -> r.visitorTo(0x0));

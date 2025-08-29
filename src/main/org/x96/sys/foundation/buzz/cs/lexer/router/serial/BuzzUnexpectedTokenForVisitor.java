@@ -1,6 +1,6 @@
 package org.x96.sys.foundation.buzz.cs.lexer.router.serial;
 
-import org.x96.sys.foundation.buzz.Buzz;
+import org.x96.sys.buzz.Buzz;
 import org.x96.sys.foundation.cs.lexer.router.serial.architecture.Step;
 
 public class BuzzUnexpectedTokenForVisitor extends Buzz {

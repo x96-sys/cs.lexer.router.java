@@ -4,16 +4,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import org.x96.sys.foundation.buzz.cs.lexer.router.switcher.BuzzSwitcherEmpty;
-import org.x96.sys.foundation.cs.lexer.token.Token;
-import org.x96.sys.foundation.cs.lexer.tokenizer.Tokenizer;
+import org.x96.sys.lexer.token.Token;
+import org.x96.sys.lexer.tokenizer.Tokenizer;
 import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c0.Etx;
 import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c0.Stx;
-import org.x96.sys.foundation.io.ByteStream;
+import org.x96.sys.io.ByteStream;
 
 class SwitcherTest {
     @Test
     void happySwitcher() {
-        Tokenizer tokenizer = new Tokenizer(ByteStream.raw(new byte[] {0x2}));
+        Tokenizer tokenizer = new Tokenizer(ByteStream.raw(new byte[] { 0x2 }));
         Switcher switcher = new Switcher();
         switcher.know(Stx.class);
         switcher.know(Etx.class);
@@ -22,7 +22,7 @@ class SwitcherTest {
 
     @Test
     void happyStream() {
-        Tokenizer tokenizer = new Tokenizer(ByteStream.raw(new byte[] {0x2}));
+        Tokenizer tokenizer = new Tokenizer(ByteStream.raw(new byte[] { 0x2 }));
         Switcher switcher = new Switcher();
         switcher.know(Stx.class);
         switcher.know(Etx.class);
@@ -33,7 +33,7 @@ class SwitcherTest {
 
     @Test
     void happyBuzzSwitcherEmpty() {
-        Tokenizer tokenizer = new Tokenizer(ByteStream.raw(new byte[] {0x2}));
+        Tokenizer tokenizer = new Tokenizer(ByteStream.raw(new byte[] { 0x2 }));
         Switcher switcher = new Switcher();
         switcher.know(Stx.class);
         assertEquals(Stx.class, switcher.visitorTo(tokenizer.look()));

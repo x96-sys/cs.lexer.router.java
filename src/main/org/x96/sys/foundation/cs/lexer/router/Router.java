@@ -1,7 +1,7 @@
 package org.x96.sys.foundation.cs.lexer.router;
 
 import org.x96.sys.foundation.cs.lexer.router.architecture.Dispatcher;
-import org.x96.sys.foundation.cs.lexer.visitor.Visitor;
+import org.x96.sys.lexer.visitor.Visitor;
 
 import java.util.Arrays;
 
@@ -11,7 +11,8 @@ public abstract class Router implements Routing {
     public boolean analyzed = false;
 
     public Dispatcher dispatcher() {
-        if (!analyzed) analysis();
+        if (!analyzed)
+            analysis();
         return this.dispatcher;
     }
 

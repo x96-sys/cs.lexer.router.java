@@ -5,7 +5,7 @@ import org.x96.sys.foundation.buzz.cs.lexer.router.architecture.BuzzAmbiguousVis
 import org.x96.sys.foundation.buzz.cs.lexer.router.architecture.BuzzAnalyzerEmpty;
 import org.x96.sys.foundation.buzz.cs.lexer.router.architecture.BuzzRouterVisitorsEmpty;
 import org.x96.sys.foundation.cs.lexer.router.Router;
-import org.x96.sys.foundation.cs.lexer.visitor.Visitor;
+import org.x96.sys.lexer.visitor.Visitor;
 
 import java.util.Map;
 

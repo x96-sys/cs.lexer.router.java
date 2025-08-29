@@ -1,6 +1,6 @@
 package org.x96.sys.foundation.cs.lexer.router.serial.architecture;
 
-import org.x96.sys.foundation.cs.lexer.visitor.Visitor;
+import org.x96.sys.lexer.visitor.Visitor;
 
 public class Step {
     public final Class<? extends Visitor> visitor;

@@ -6,3 +6,6 @@ lib
 *.jar
 src/main/org/x96/sys/foundation/BuildInfo.java
 manifest.mf
+.idea
+.zig-cache
+*.iml

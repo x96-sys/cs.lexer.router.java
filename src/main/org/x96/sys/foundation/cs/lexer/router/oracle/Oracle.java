@@ -1,10 +1,10 @@
 package org.x96.sys.foundation.cs.lexer.router.oracle;
 
 import org.x96.sys.foundation.cs.lexer.router.Router;
-import org.x96.sys.foundation.cs.lexer.token.Token;
-import org.x96.sys.foundation.cs.lexer.tokenizer.Tokenizer;
-import org.x96.sys.foundation.cs.lexer.visitor.Visitor;
-import org.x96.sys.foundation.cs.lexer.visitor.factory.ReflectiveVisitorFactory;
+import org.x96.sys.lexer.token.Token;
+import org.x96.sys.lexer.tokenizer.Tokenizer;
+import org.x96.sys.lexer.visitor.Visitor;
+import org.x96.sys.lexer.visitor.factory.ReflectiveVisitorFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,9 +31,11 @@ public class Oracle extends Router {
     private void resolve(Tokenizer t, List<Token> r) {
         if (t.ready()) {
             Class<? extends Visitor> v = visitorTo(t.look());
-            if (v == null) return;
+            if (v == null)
+                return;
             r.addAll(Arrays.asList(ReflectiveVisitorFactory.happens(v, t).visit()));
-            if (t.ready()) resolve(t, r);
+            if (t.ready())
+                resolve(t, r);
         }
     }
 }
