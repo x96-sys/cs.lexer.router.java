@@ -1,0 +1,41 @@
+package org.x96.sys.router.architecture;
+
+import org.x96.sys.buzz.router.architecture.BuzzAmbiguousRouting;
+import org.x96.sys.buzz.router.architecture.BuzzAmbiguousVisitor;
+import org.x96.sys.buzz.router.architecture.BuzzAnalyzerEmpty;
+import org.x96.sys.buzz.router.architecture.BuzzRouterVisitorsEmpty;
+import org.x96.sys.router.Router;
+import org.x96.sys.lexer.visitor.Visitor;
+
+import java.util.Map;
+
+public final class Dispatcher {
+
+    private final Map<Integer, Class<? extends Visitor>> table;
+
+    public Dispatcher(Router dispatcher) {
+        try {
+            this.table = Analyzer.build(dispatcher);
+        } catch (BuzzAnalyzerEmpty e) {
+            throw new BuzzRouterVisitorsEmpty(e);
+        } catch (BuzzAmbiguousVisitor e) {
+            throw new BuzzAmbiguousRouting("Ambiguidade detectada na fase de roteamento", e);
+        }
+    }
+
+    public Map<Integer, Class<? extends Visitor>> getTable() {
+        return this.table;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("- Dispatcher Table [").append(table.size()).append("]\n");
+        String indent = " ".repeat(4);
+        for (Map.Entry<Integer, Class<? extends Visitor>> entry : table.entrySet()) {
+            sb.append(indent);
+            sb.append(String.format("[0x%X] => %s%n", entry.getKey(), entry.getValue().getName()));
+        }
+        return sb.toString().strip();
+    }
+}
