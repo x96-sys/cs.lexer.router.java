@@ -1,11 +1,11 @@
 package org.x96.sys.router.switcher;
 
 import org.x96.sys.buzz.router.switcher.BuzzSwitcherEmpty;
-import org.x96.sys.router.oracle.Oracle;
 import org.x96.sys.lexer.token.Token;
 import org.x96.sys.lexer.tokenizer.Tokenizer;
 import org.x96.sys.lexer.visitor.Visitor;
 import org.x96.sys.lexer.visitor.factory.ReflectiveVisitorFactory;
+import org.x96.sys.router.oracle.Oracle;
 
 public class Switcher extends Oracle {
 

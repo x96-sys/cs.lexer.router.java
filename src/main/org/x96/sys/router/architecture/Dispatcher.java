@@ -4,8 +4,8 @@ import org.x96.sys.buzz.router.architecture.BuzzAmbiguousRouting;
 import org.x96.sys.buzz.router.architecture.BuzzAmbiguousVisitor;
 import org.x96.sys.buzz.router.architecture.BuzzAnalyzerEmpty;
 import org.x96.sys.buzz.router.architecture.BuzzRouterVisitorsEmpty;
-import org.x96.sys.router.Router;
 import org.x96.sys.lexer.visitor.Visitor;
+import org.x96.sys.router.Router;
 
 import java.util.Map;
 

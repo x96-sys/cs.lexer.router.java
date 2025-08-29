@@ -1,7 +1,7 @@
 package org.x96.sys.router;
 
-import org.x96.sys.router.architecture.Dispatcher;
 import org.x96.sys.lexer.visitor.Visitor;
+import org.x96.sys.router.architecture.Dispatcher;
 
 import java.util.Arrays;
 
@@ -11,8 +11,7 @@ public abstract class Router implements Routing {
     public boolean analyzed = false;
 
     public Dispatcher dispatcher() {
-        if (!analyzed)
-            analysis();
+        if (!analyzed) analysis();
         return this.dispatcher;
     }
 

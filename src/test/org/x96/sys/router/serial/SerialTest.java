@@ -8,21 +8,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.x96.sys.buzz.router.serial.BuzzCantSerialize;
-import org.x96.sys.router.serial.Serial;
-import org.x96.sys.router.serial.architecture.Quantifier;
-import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c0.Etx;
-import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c0.Lf;
-import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c0.Stx;
-import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c3.DigitOne;
-import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c3.DigitTwo;
-import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c3.DigitZero;
-import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c6.LatinSmallLetterA;
-import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c6.LatinSmallLetterC;
-import org.x96.sys.foundation.cs.lexer.visitor.entry.terminals.c7.LatinSmallLetterS;
 import org.x96.sys.io.ByteStream;
 import org.x96.sys.lexer.token.Kind;
 import org.x96.sys.lexer.token.Token;
 import org.x96.sys.lexer.tokenizer.Tokenizer;
+import org.x96.sys.lexer.visitor.entry.terminals.c0.Etx;
+import org.x96.sys.lexer.visitor.entry.terminals.c0.Lf;
+import org.x96.sys.lexer.visitor.entry.terminals.c0.Stx;
+import org.x96.sys.lexer.visitor.entry.terminals.c3.DigitOne;
+import org.x96.sys.lexer.visitor.entry.terminals.c3.DigitTwo;
+import org.x96.sys.lexer.visitor.entry.terminals.c3.DigitZero;
+import org.x96.sys.lexer.visitor.entry.terminals.c6.LatinSmallLetterA;
+import org.x96.sys.lexer.visitor.entry.terminals.c6.LatinSmallLetterC;
+import org.x96.sys.lexer.visitor.entry.terminals.c7.LatinSmallLetterS;
+import org.x96.sys.router.serial.architecture.Quantifier;
 
 class SerialTest {
     @Test

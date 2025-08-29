@@ -75,12 +75,14 @@ public class BuzzAmbiguousVisitor extends Buzz {
     }
 
     private static void appendRange(StringBuilder sb, int inicio, int fim) {
-        if (sb.length() > 0)
-            sb.append(", ");
+        if (sb.length() > 0) sb.append(", ");
         if (inicio == fim) {
             sb.append("[").append(String.format("0x%X", inicio)).append("]");
         } else {
-            sb.append("[").append(String.format("0x%X", inicio)).append("–").append(String.format("0x%X", fim))
+            sb.append("[")
+                    .append(String.format("0x%X", inicio))
+                    .append("–")
+                    .append(String.format("0x%X", fim))
                     .append("]");
         }
     }

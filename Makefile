@@ -35,20 +35,20 @@ TOKEN_JAR     = $(LIB_DIR)/org.x96.sys.lexer.token.jar
 TOKEN_URL     = https://github.com/x96-sys/cs.lexer.token.java/releases/download/v$(TOKEN_VERSION)/org.x96.sys.lexer.token.jar
 TOKEN_SHA256  = b58fa314148954ec78d3ead11a434da2670d6d64837807087d2b541190fcf40d
 
-CS_VISITOR_VERSION = 0.1.7
-CS_VISITOR_JAR     = $(LIB_DIR)/org.x96.sys.lexer.visitor.jar
-CS_VISITOR_URL     = https://github.com/x96-sys/cs.lexer.visitor.java/releases/download/v$(CS_VISITOR_VERSION)/org.x96.sys.lexer.visitor.jar
-CS_VISITOR_SHA256  = 9fd6b80380e5b38139b2e8df2314d6c60e9038a8f9bdb1279acdd42b11ba24f0
+VISITOR_VERSION = 1.0.0
+VISITOR_JAR     = $(LIB_DIR)/org.x96.sys.lexer.visitor.jar
+VISITOR_URL     = https://github.com/x96-sys/lexer.visitor.java/releases/download/v$(VISITOR_VERSION)/org.x96.sys.lexer.visitor.jar
+VISITOR_SHA256  = 2ae4d8669d15c965e30053a7d92a362ea1136c3ef3c3bacdcb9dbbc347bc977e
 
-LEXER_VERSION = 0.1.5
-LEXER_JAR     = $(LIB_DIR)/org.x96.sys.foundation.cs.lexer.dsl.jar
-LEXER_URL     = https://github.com/x96-sys/cs.lexer.dsl.java/releases/download/v$(LEXER_VERSION)/org.x96.sys.foundation.cs.lexer.dsl.jar
-LEXER_SHA256  = 9d6454666d374ef88b726b75f9db6193e40f154f0680181f67733dcb4f8af10b
+LEXER_VERSION = 1.0.0
+LEXER_JAR     = $(LIB_DIR)/org.x96.sys.lexer.jar
+LEXER_URL     = https://github.com/x96-sys/lexer.java/releases/download/v$(LEXER_VERSION)/org.x96.sys.lexer.jar
+LEXER_SHA256  = e8ba9545f1b0c1940fbfe3731326f015962501bcb3b8f03fbe89d41436c90de1
 
-ENTRY_VERSION = 0.1.4
+ENTRY_VERSION = 1.0.0
 ENTRY_JAR     = $(LIB_DIR)/org.x96.sys.lexer.entry.jar
-ENTRY_URL     = https://github.com/x96-sys/cs.lexer.visitor.entry.java/releases/download/v$(ENTRY_VERSION)/org.x96.sys.lexer.entry.jar
-ENTRY_SHA256  = bde99dc58c8ea38e85cc887656fd1fa1d241dbb96e05a7a605992b9cb61340f8
+ENTRY_URL     = https://github.com/x96-sys/lexer.visitor.entry.java/releases/download/v$(ENTRY_VERSION)/org.x96.sys.lexer.entry.jar
+ENTRY_SHA256  = e706396e6d3fdbd69d529a0d5cbd4597699bd7f7d85f563983ee87e4d4fa90b4
 
 JUNIT_VERSION = 1.13.4
 JUNIT_JAR     = $(TOOLS_DIR)/junit-platform-console-standalone.jar
@@ -78,7 +78,7 @@ JAVA_TEST_SOURCE = $(shell find $(SRC_TEST) -name "*.java")
 
 DISTRO_JAR = org.x96.sys.lexer.router.jar
 
-CP  = $(BUZZ_JAR):$(IO_JAR):$(KIND_JAR):$(TOKENIZER_JAR):$(TOKEN_JAR):$(LEXER_JAR):$(CS_VISITOR_JAR)
+CP  = $(BUZZ_JAR):$(IO_JAR):$(KIND_JAR):$(TOKENIZER_JAR):$(TOKEN_JAR):$(LEXER_JAR):$(VISITOR_JAR)
 CPT = $(JUNIT_JAR):$(ENTRY_JAR):$(CP)
 
 build: libs
@@ -162,7 +162,7 @@ $(eval $(call deps,$(LIB_DIR),io,IO))
 $(eval $(call deps,$(LIB_DIR),kind,KIND))
 $(eval $(call deps,$(LIB_DIR),tokenizer,TOKENIZER))
 $(eval $(call deps,$(LIB_DIR),token,TOKEN))
-$(eval $(call deps,$(LIB_DIR),visitor,CS_VISITOR))
+$(eval $(call deps,$(LIB_DIR),visitor,VISITOR))
 $(eval $(call deps,$(LIB_DIR),lexer,LEXER))
 $(eval $(call deps,$(LIB_DIR),entry,ENTRY))
 

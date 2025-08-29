@@ -3,13 +3,13 @@ package org.x96.sys.router.serial;
 import org.x96.sys.buzz.Buzz;
 import org.x96.sys.buzz.router.serial.BuzzCantSerialize;
 import org.x96.sys.buzz.router.serial.BuzzUnexpectedTokenForVisitor;
-import org.x96.sys.router.Router;
-import org.x96.sys.router.serial.architecture.Quantifier;
-import org.x96.sys.router.serial.architecture.Step;
 import org.x96.sys.lexer.token.Token;
 import org.x96.sys.lexer.tokenizer.Tokenizer;
 import org.x96.sys.lexer.visitor.Visitor;
 import org.x96.sys.lexer.visitor.factory.ReflectiveVisitorFactory;
+import org.x96.sys.router.Router;
+import org.x96.sys.router.serial.architecture.Quantifier;
+import org.x96.sys.router.serial.architecture.Step;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -107,7 +107,8 @@ public class Serial extends Router {
             }
             if (hasNext()
                     && (visitorInLine().quantifier == Quantifier.ZERO_OR_MORE
-                            || visitorInLine().quantifier == Quantifier.ZERO_OR_ONE)) { // ultimo visitante podia ser
+                            || visitorInLine().quantifier
+                                    == Quantifier.ZERO_OR_ONE)) { // ultimo visitante podia ser
                 // zero
                 dequeue();
                 afterStream(t);
