@@ -73,6 +73,8 @@ JACOCO_AGENT_JAR     = $(TOOLS_DIR)/jacocoagent-runtime.jar
 JACOCO_AGENT_URL     = $(JACOCO_BASE)/org.jacoco.agent/$(JACOCO_AGENT_VERSION)/org.jacoco.agent-$(JACOCO_AGENT_VERSION)-runtime.jar
 JACOCO_AGENT_SHA256  = 47e700ccb0fdb9e27c5241353f8161938f4e53c3561dd35e063c5fe88dc3349b
 
+BUILD_INFO = https://gist.githubusercontent.com/tfs91/7c050b5c822c6f247aa0ab193be3d35d/raw/8d91e9f98dce6f606b7a375ab76891906f9b08dc/gen_build_info.rb
+
 JAVA_SOURCES     = $(shell find $(SRC_MAIN) -name "*.java")
 JAVA_TEST_SOURCE = $(shell find $(SRC_TEST) -name "*.java")
 
@@ -81,15 +83,18 @@ DISTRO_JAR = org.x96.sys.lexer.router.jar
 CP  = $(BUZZ_JAR):$(IO_JAR):$(KIND_JAR):$(TOKENIZER_JAR):$(TOKEN_JAR):$(LEXER_JAR):$(VISITOR_JAR)
 CPT = $(JUNIT_JAR):$(ENTRY_JAR):$(CP)
 
-build: libs
+build/info:
+  @curl -sSL $(BUILD_INFO) | ruby - src/main/ org.x96.sys.lexer.router
+
+build: libs clean/build/main build/info
 	@javac -d $(MAIN_BUILD) -cp $(CP) $(JAVA_SOURCES)
 	@echo "[🦾] [compiled] [$(MAIN_BUILD)]"
 
-build-test: build
+build/test: kit clean/build/test build
 	@javac -cp $(MAIN_BUILD):$(CLI_BUILD):$(CPT) -d $(TEST_BUILD) $(JAVA_TEST_SOURCE)
 	@echo "[🧰] [compiled] [$(TEST_BUILD)]"
 
-test: build-test
+test: build/test
 	@java -jar $(JUNIT_JAR) \
      execute \
      --class-path :$(TEST_BUILD):$(MAIN_BUILD):$(CPT) \
@@ -98,7 +103,7 @@ test: build-test
 COVERAGE_EXEC = $(BUILD_DIR)/jacoco.exec
 COVERAGE_REPORT = $(BUILD_DIR)/coverage
 
-coverage: build-test $(COVERAGE_REPORT)
+coverage: build/test $(COVERAGE_REPORT)
 	@echo "[📊] Running tests with JaCoCo agent..."
 	@java -javaagent:$(JACOCO_AGENT_JAR)=destfile=$(COVERAGE_EXEC) \
 		-jar $(JUNIT_JAR) \
@@ -114,11 +119,11 @@ coverage: build-test $(COVERAGE_REPORT)
 		--csv  $(COVERAGE_REPORT)/coverage.csv
 	@echo "[✅] Coverage report available in $(COVERAGE_REPORT)/index.html"
 
-test-method: build-test ## Executa teste específico (METHOD="Classe#método")
+test-method: build/test ## Executa teste específico (METHOD="Classe#método")
 	@echo "🧪 Executando teste: $(METHOD)"
 	@java -jar $(JUNIT_JAR) --class-path $(TEST_BUILD):$(MAIN_BUILD):$(CLI_BUILD):$(CP) --select "method:$(METHOD)"
 
-test-class: build-test ## Executa classe de teste (CLASS="nome.da.Classe")
+test-class: build/test ## Executa classe de teste (CLASS="nome.da.Classe")
 	@echo "🧪 Executando classe: $(CLASS)"
 	@java -jar $(JUNIT_JAR) --class-path $(TEST_BUILD):$(MAIN_BUILD):$(CLI_BUILD):$(CP) --select "class:$(CLASS)"
 
@@ -189,6 +194,14 @@ kit: \
 distro: libs
 	@jar cf $(DISTRO_JAR) -C $(MAIN_BUILD) .
 	@echo "[📦] [bin] [$(DISTRO_JAR)]"
+
+clean/build/main:
+	@rm -rf $(MAIN_BUILD)
+	@echo "[🧼] [clean] [$(MAIN_BUILD)]"
+
+clean/build/test:
+	@rm -rf $(TEST_BUILD)
+	@echo "[🧹] [clean] [$(TEST_BUILD)]"
 
 clean:
 	@rm -rf $(BUILD_DIR) $(TOOLS_DIR) $(LIB_DIR)
